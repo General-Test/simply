@@ -1,0 +1,161 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="X1-fHy8_AKraMNBHLK-j">
+    <mxGraphModel dx="1564" dy="795" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" adaptiveColors="auto">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="azure" parent="1" style="swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=13;html=1;" value="Azure Entra ID" vertex="1">
+          <mxGeometry height="300" width="780" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="api_app" parent="azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;appconnect-pulsar-api&lt;/b&gt;&#xa;(Resource App)&#xa;&#xa;• appId = aud claim&#xa;• tokenVersion = 2&#xa;• Defines the resource" vertex="1">
+          <mxGeometry height="120" width="200" x="40" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oauth" parent="azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" value="&lt;b&gt;OAuth 2.0 Config&lt;/b&gt;&#xa;&#xa;• grant_type: client_credentials&#xa;• scope: api://&lt;appId&gt;/.default&#xa;• iss: .../v2.0 (v2 token)&#xa;• aud: appconnect-pulsar-api appId&#xa;• azp: tenant clientId" vertex="1">
+          <mxGeometry height="120" width="210" x="290" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t1" parent="azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;Tenant App 1&lt;/b&gt;&#xa;clientId = GUID-1&#xa;clientSecret = ***" vertex="1">
+          <mxGeometry height="70" width="150" x="40" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" parent="azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;Tenant App 2&lt;/b&gt;&#xa;clientId = GUID-2&#xa;clientSecret = ***" vertex="1">
+          <mxGeometry height="70" width="150" x="210" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="tn" parent="azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;Tenant App N&lt;/b&gt;&#xa;clientId = GUID-N&#xa;clientSecret = ***" vertex="1">
+          <mxGeometry height="70" width="150" x="380" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="dots" parent="azure" style="text;html=1;fontSize=12;fontStyle=2;align=center;" value="· · · up to 500 instances · · ·" vertex="1">
+          <mxGeometry height="40" width="200" x="550" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="e_t1_oauth" edge="1" parent="azure" source="t1" style="fontSize=10;dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="oauth" value="client_credentials&#xa;request">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="24" y="245" />
+              <mxPoint x="24" y="44" />
+              <mxPoint x="395" y="44" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_t2_oauth" edge="1" parent="azure" source="t2" style="dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="oauth" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="285" y="296" />
+              <mxPoint x="10" y="296" />
+              <mxPoint x="10" y="30" />
+              <mxPoint x="395" y="30" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_tn_oauth" edge="1" parent="azure" source="tn" style="dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="oauth" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="455" y="296" />
+              <mxPoint x="766" y="296" />
+              <mxPoint x="766" y="44" />
+              <mxPoint x="395" y="44" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_oauth" edge="1" parent="azure" source="api_app" style="fontSize=10;edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="oauth" value="defines resource">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jwks" parent="azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;JWKS Endpoint&lt;/b&gt;&#xa;login.microsoftonline.com&#xa;/.well-known/openid-configuration&#xa;&#xa;RSA public keys for JWT verification" vertex="1">
+          <mxGeometry height="120" width="200" x="550" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pulsar" parent="1" style="swimlane;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=13;html=1;" value="Pulsar Cluster (OpenShift ARO)" vertex="1">
+          <mxGeometry height="320" width="780" x="40" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="proxy" parent="pulsar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;Pulsar Proxy&lt;/b&gt;&#xa;port 6650&#xa;&#xa;1. Validates Entra JWT&#xa;   via OIDC discovery&#xa;2. Extracts azp → role&#xa;3. Forwards as originalPrincipal" vertex="1">
+          <mxGeometry height="130" width="200" x="40" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="broker" parent="pulsar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;Pulsar Broker&lt;/b&gt;&#xa;&#xa;• proxyRoles = pulsar-proxy&#xa;• superUserRoles = broker-admin, pulsar-proxy&#xa;• authenticateOriginalAuthData = false&#xa;• openIDAllowedAudiences = appId&#xa;• openIDAllowedTokenIssuers = .../v2.0&#xa;• openIDRoleClaim = azp" vertex="1">
+          <mxGeometry height="130" width="240" x="290" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ns1" parent="pulsar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;appconnect/GUID-1&lt;/b&gt;&#xa;role GUID-1 → produce+consume&#xa;topic: event-flow-queue" vertex="1">
+          <mxGeometry height="70" width="190" x="40" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="ns2" parent="pulsar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;appconnect/GUID-2&lt;/b&gt;&#xa;role GUID-2 → produce+consume&#xa;topic: event-flow-queue" vertex="1">
+          <mxGeometry height="70" width="190" x="250" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="nsn" parent="pulsar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;appconnect/GUID-N&lt;/b&gt;&#xa;role GUID-N → produce+consume&#xa;topic: event-flow-queue" vertex="1">
+          <mxGeometry height="70" width="190" x="460" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="dots2" parent="pulsar" style="text;html=1;fontSize=11;fontStyle=2;align=center;" value="· · · 500 namespaces · · ·" vertex="1">
+          <mxGeometry height="40" width="100" x="660" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="bk" parent="pulsar" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;BookKeeper&lt;/b&gt;&#xa;(Persistent Storage)" vertex="1">
+          <mxGeometry height="100" width="140" x="600" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_proxy_broker" edge="1" parent="pulsar" source="proxy" style="fontSize=10;edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="broker" value="pulsar-proxy token&#xa;+ originalPrincipal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_broker_ns1" edge="1" parent="pulsar" source="broker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="ns1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="196" />
+              <mxPoint x="135" y="196" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_broker_ns2" edge="1" parent="pulsar" source="broker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="ns2" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="203" />
+              <mxPoint x="345" y="203" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_broker_nsn" edge="1" parent="pulsar" source="broker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="nsn" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="555" y="115" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_broker_bk" edge="1" parent="pulsar" source="broker" style="fontSize=10;edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="bk" value="store">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="565" y="115" />
+              <mxPoint x="565" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_oauth_proxy" edge="1" parent="1" style="fontSize=11;strokeColor=#b85450;fontColor=#b85450;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" value="Entra JWT&#xa;(aud, azp, iss)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="395" y="65" />
+              <mxPoint x="-4" y="65" />
+              <mxPoint x="-4" y="517" />
+            </Array>
+            <mxPoint x="394.9999999999998" y="102" as="sourcePoint" />
+            <mxPoint x="78" y="517" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_jwks_broker" edge="1" parent="1" source="jwks" style="fontSize=10;dashed=1;strokeColor=#9673a6;edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="broker" value="fetch RSA public keys&#xa;(OIDC discovery)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820" y="160" />
+              <mxPoint x="820" y="385" />
+              <mxPoint x="450" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="admin" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" value="&lt;b&gt;admin.js&lt;/b&gt;&#xa;(Provisioning)&#xa;&#xa;Per new tenant:&#xa;create namespace +&#xa;grant RBAC" vertex="1">
+          <mxGeometry height="110" width="150" x="880" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="e_admin_broker" edge="1" parent="1" source="admin" style="fontSize=10;dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;libavoidRouting=1;orthogonalLoop=1;jettySize=auto;html=1;" target="broker" value="REST API&#xa;(broker-admin token)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="545" />
+              <mxPoint x="830" y="566" />
+              <mxPoint x="609" y="566" />
+              <mxPoint x="609" y="515" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
